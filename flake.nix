@@ -7,13 +7,14 @@
   };
 
   outputs = { self, nixpkgs, flake-utils }: 
-  let 
-    system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; }; # shorthand of nixpkgs { system = system; }
-  in {
-    packages.${system} = {
-      default = pkgs.callPackage ../nix/package.nix {};
-    };
-  };
-    
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        packages = {
+          goPackage = pkgs.callPackage ./nix/package.nix { };
+          default = self.packages.${system}.goPackage;
+        };
+    });
 }
