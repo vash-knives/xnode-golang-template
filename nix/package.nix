@@ -1,9 +1,9 @@
 {
-  buildGoModule,
+  buildGo123Module,
   lib,
   ...
 }:
-buildGoModule rec {
+buildGo123Module rec {
   pname = "go-app";
   version = "1.0.0";
   src = ../go-app;
