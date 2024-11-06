@@ -18,7 +18,13 @@ nix build -L
 On some systems you'll need to add extra flags in order to execute nix run successfully. If this is your case run the following:
 
 ```sh
+
 nix run --extra-experimental-features nix-command --extra-experimental-features flakes
+
+# or you can add this line on your nix.conf
+
+experimental-features = nix-command flakes
+
 ```
 
 ---
