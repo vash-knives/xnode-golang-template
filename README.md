@@ -29,7 +29,9 @@ docker build -t go-nix .
 
 docker run -it \
  --cpus="4" \
- -v $(pwd):/workspace/ go-nix 
+ -v $(pwd):/workspace/ \
+ -p 6565:6565 \
+ go-nix
 
 
 ```
