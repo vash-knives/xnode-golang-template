@@ -15,9 +15,11 @@ func main() {
 		w.Write([]byte("Welcome to this Go Template"))
 	})
 
-	http.ListenAndServe(":6565", r)
+	port := ":6565"
 
-	slog.Info("Server running on http://localhost:6565")
+	slog.Info("Server starting on port", port)
+
+	http.ListenAndServe(port, r)
 }
 
 var banner = `
