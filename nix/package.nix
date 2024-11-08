@@ -25,6 +25,7 @@ buildGo123Module rec {
   version = "1.0.0";
   # src = ../go-app;
   src = source;
+  appBuildName = "${pname}-${version}";
   
   # # For any change on your app code, uncomment this (vendorHash = lib.fakehash) and comment out the other vendorHash so it generates a new hash 
   # # which you will use to update the second vendorHash variable.
@@ -55,7 +56,7 @@ buildGo123Module rec {
     go mod download
 
     echo "Building Go application..."
-    go build -o ${pname} ./cmd
+    go build -o ${appBuildName} ./cmd
     echo "Post-build directory contents:"
     ls -la
     echo "Build phase completed"
@@ -65,7 +66,7 @@ buildGo123Module rec {
     echo "Starting install phase"
     mkdir -p $out/bin
     echo "Copying binary to $out/bin"
-    cp -v ${pname} $out/bin/
+    cp -v ${appBuildName} $out/bin/
     echo "Contents of $out/bin:"
     ls -la $out/bin
     echo "Install phase completed"
